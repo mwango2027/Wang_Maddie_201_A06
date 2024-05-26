@@ -1,7 +1,7 @@
 ---
 title: "Assignment 6"
 subtitle: "STAT 201"
-author: "YOUR NAME"
+author: "Maddie Wang"
 
 format:
   html:
@@ -102,7 +102,11 @@ Extract the value `8162` (LeBron James points) in 2 different ways:
 - using names
 
 ```{r}
+# using indexing
+print(player_info[[2]][[4]])
 
+# using names
+print(player_info$LJ$points)
 ```
 
 
@@ -113,6 +117,15 @@ Add a new named element to the end of each player's list called `height`. The he
 Print the `player_info` list to prove you were successful.
 
 ```{r}
+# initializing the list of heights
+height <- list(78, 81, 78, 86, 85)
+
+# looping it to add the respective height to each player's list
+for(i in 1:length(player_info)){
+  player_info[[i]]$height <- height[[i]]
+}
+
+player_info
 
 ```
 
@@ -132,6 +145,20 @@ Hint: initialize an empty list
 Note: this must still run correctly even if the values were to change or if another player were added to the list or if the player order changed.
 
 ```{r}
+# initializing empty list
+ppg_list <- list()
+
+# looping to fill the list with each player's points per game (ppg)
+for (i in 1:length(player_info)){
+  ppg <- player_info[[i]]$points/player_info[[i]]$games_played
+  ppg_list <- append(ppg_list, ppg)
+}
+
+# renaming each ppg element to respective player's initials
+names(ppg_list) <- c('MJ', 'LJ', 'KB', 'KA', 'SO')
+
+# printing
+ppg_list
 
 ```
 
@@ -143,7 +170,14 @@ Use the list created in Part c and an appropriate apply function to round each v
 Store the output as a vector and print the results.
 
 ```{r}
+# creating function to round value to 2 digits
+round_2 <- function(x){
+  return(round(x, digits = 2))
+}
 
+# applying to list with sapply for a vector output
+rounded_ppgs <- sapply(ppg_list, round_2)
+rounded_ppgs
 ```
 
 
