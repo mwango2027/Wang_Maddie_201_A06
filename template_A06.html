@@ -3378,12 +3378,12 @@ $SO
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>mat_rand</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3] [,4] [,5]
-[1,]  700 1000  600  700 1000
-[2,]   10   20   90   40 1000
-[3,]  600   10   20  900   90
-[4,]  500  100 2000 1000 1000
-[5,]  100  400 1000 2000  300
-[6,]   40 2000  900  200 2000</code></pre>
+[1,]  400   50 2000 1000   70
+[2,] 1000  600   90 1000  900
+[3,]  200 1000   20  700   90
+[4,]   80 1000 1000   50   50
+[5,]  500  100 1000  200 1000
+[6,]   80 2000 2000  500   20</code></pre>
 </div>
 </div>
 </section>
@@ -3471,6 +3471,30 @@ $SO
 <p>Write a recursive function that calculates the sum of the digits in a number.</p>
 <p>Example: The number 312 would return 6 (3 + 1 + 2)</p>
 <p>Run your function with 935068.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sum_digits <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">final_sum =</span> <span class="dv">0</span>){</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># base case</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.na</span>(x)){</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(final_sum)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  }<span class="cf">else</span>{</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># adding last number to final sum</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    final_sum <span class="ot">&lt;-</span> final_sum <span class="sc">+</span> x<span class="sc">%%</span><span class="dv">10</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># getting the new inputs for the recursion to continue</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">as.character</span>(x) <span class="co"># changing to character</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    new_input <span class="ot">&lt;-</span> <span class="fu">substr</span>(x, <span class="dv">1</span>, <span class="fu">nchar</span>(x)<span class="sc">-</span><span class="dv">1</span>) <span class="co"># getting rid of the last character</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">sum_digits</span>(<span class="fu">as.numeric</span>(new_input), final_sum)) <span class="co"># recalling</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="fu">sum_digits</span>(<span class="dv">935068</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 31</code></pre>
+</div>
+</div>
 </section>
 </section>
 
