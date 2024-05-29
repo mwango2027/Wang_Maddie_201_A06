@@ -236,8 +236,13 @@ max_temps <- read_tsv("state_max_temps.tsv") |>
 ### Part a (2 points)
 
 Calculate the average temperature for each month across the whole data frame (using the data for all three states together).
-
 ```{r}
+# initializing column title list to use for indexes
+col_titles <- c("jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec")
+
+# creating a list and using sapply with a function to calculate means per each column
+avg_list <- sapply(col_titles, function(col){mean(max_temps[[col]])})
+avg_list
 
 ```
 
@@ -253,7 +258,10 @@ Create three new data frames by slicing the data by state.
 No need to print any output here.
 
 ```{r}
-
+# slicing for rows that fit the desired state initial logical
+co <- max_temps[max_temps$state == "CO", ]
+oh <- max_temps[max_temps$state == "OH", ]
+va <- max_temps[max_temps$state == "VA", ]
 ```
 
 
@@ -275,6 +283,22 @@ Note: This code should still run successfully even if the numbers were to change
 
 ```{r}
 
+# creating a list of median annual temperatures
+median_list <- apply(co[,3:14], 1, median)
+
+# creating a list of all the years to use for indexing
+years <- co$year
+
+# finding maxes
+max_med <- median_list[[which.max(median_list)]]
+max_med_year <- years[[which.max(median_list)]]
+
+# finding mins
+min_med <- median_list[[which.min(median_list)]]
+min_med_year <- years[[which.min(median_list)]]
+
+# pasting results
+paste0("The maximum median annual temperature of ", max_med, " occured in ", max_med_year, " and the minimum median annual temperature of ", min_med," occured in ", min_med_year, ".")
 ```
 
 
@@ -286,7 +310,9 @@ Example: The number 312 would return 6 (3 + 1 + 2)
 
 Run your function with 935068.
 
+
 ```{r}
+
 
 ```
 
